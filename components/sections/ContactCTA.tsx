@@ -43,59 +43,61 @@ export default function ContactCTA({ dict, lang }: SectionProps) {
         </h2>
         <p className="mx-auto mt-4 max-w-[440px] font-[var(--font-body)] [font-size:var(--text-body)] leading-[1.65] text-[var(--color-text-secondary)]">{dict.contact.subheadline}</p>
 
-        {status === 'success' ? (
-          <div className="mt-12 border-l-2 border-[var(--color-gold)] py-8 pl-8 text-left">
-            <p className="label">{dict.contact.successLabel}</p>
-            <p className="mt-4 [font-size:var(--text-body-lg)] leading-[1.65] text-[var(--color-text-primary)]">{dict.contact.success}</p>
-          </div>
-        ) : (
-          <form onSubmit={onSubmit} className="mt-12 space-y-5 text-left">
-            <div className="grid gap-5 md:grid-cols-2">
-              <div>
-                <label className="label" htmlFor="name">
-                  {dict.contact.fields.name}
-                </label>
-                <input id="name" name="name" required className="input-field" />
-              </div>
-              <div>
-                <label className="label" htmlFor="contactBusinessName">
-                  {dict.contact.fields.businessName}
-                </label>
-                <input id="contactBusinessName" name="businessName" required className="input-field" />
-              </div>
+        <div className="mt-12 border border-[var(--color-border)] bg-[var(--color-surface-raised)] p-6 text-left shadow-[0_32px_120px_rgba(0,0,0,0.42)] md:p-8">
+          {status === 'success' ? (
+            <div className="fade-in py-6">
+              <p className="font-[var(--font-mono)] [font-size:var(--text-xs)] font-medium uppercase tracking-[var(--tracking-caps)] text-[var(--color-gold)]">✓ {dict.contact.successLabel}</p>
+              <p className="mt-6 font-[var(--font-display)] [font-size:var(--text-h3)] leading-[1.25] text-[var(--color-text-primary)]">{dict.contact.success}</p>
             </div>
-            <div className="grid gap-5 md:grid-cols-2">
-              <div>
-                <label className="label" htmlFor="email">
-                  {dict.contact.fields.email}
-                </label>
-                <input id="email" name="email" type="email" required className="input-field" />
+          ) : (
+            <form onSubmit={onSubmit} className="space-y-5">
+              <div className="grid gap-5 md:grid-cols-2">
+                <div>
+                  <label className="label" htmlFor="name">
+                    {dict.contact.fields.name}
+                  </label>
+                  <input id="name" name="name" required className="input-field" />
+                </div>
+                <div>
+                  <label className="label" htmlFor="contactBusinessName">
+                    {dict.contact.fields.businessName}
+                  </label>
+                  <input id="contactBusinessName" name="businessName" required className="input-field" />
+                </div>
+              </div>
+              <div className="grid gap-5 md:grid-cols-2">
+                <div>
+                  <label className="label" htmlFor="email">
+                    {dict.contact.fields.email}
+                  </label>
+                  <input id="email" name="email" type="email" required className="input-field" />
+                </div>
+                <div>
+                  <label className="label" htmlFor="website">
+                    {dict.contact.fields.website}
+                  </label>
+                  <input id="website" name="website" className="input-field" />
+                </div>
               </div>
               <div>
-                <label className="label" htmlFor="website">
-                  {dict.contact.fields.website}
+                <label className="label" htmlFor="message">
+                  {dict.contact.fields.message}
                 </label>
-                <input id="website" name="website" className="input-field" />
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  className="input-field resize-y"
+                  placeholder={dict.contact.fields.messagePlaceholder}
+                />
               </div>
-            </div>
-            <div>
-              <label className="label" htmlFor="message">
-                {dict.contact.fields.message}
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={5}
-                className="input-field resize-y"
-                placeholder={dict.contact.fields.messagePlaceholder}
-              />
-            </div>
-            <button type="submit" className="btn btn-primary w-full" disabled={status === 'loading'}>
-              {dict.contact.submit}
-            </button>
-            {status === 'error' ? <p className="[font-size:var(--text-sm)] text-[var(--color-gold)]">{dict.contact.error}</p> : null}
-          </form>
-        )}
+              <button type="submit" className="btn btn-primary w-full" disabled={status === 'loading'}>
+                {dict.contact.submit}
+              </button>
+              {status === 'error' ? <p className="[font-size:var(--text-sm)] text-[var(--color-gold)]">{dict.contact.error}</p> : null}
+            </form>
+          )}
+        </div>
       </div>
     </AnimatedSection>
   )
