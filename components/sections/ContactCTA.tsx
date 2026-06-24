@@ -10,7 +10,8 @@ export default function ContactCTA({ dict, lang }: SectionProps) {
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setStatus('loading')
-    const formData = new FormData(event.currentTarget)
+    const form = event.currentTarget
+    const formData = new FormData(form)
 
     try {
       const response = await fetch('/api/contact', {
@@ -27,7 +28,7 @@ export default function ContactCTA({ dict, lang }: SectionProps) {
       })
       if (!response.ok) throw new Error('Request failed')
       setStatus('success')
-      event.currentTarget.reset()
+      form.reset()
     } catch {
       setStatus('error')
     }
