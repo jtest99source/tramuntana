@@ -14,7 +14,7 @@ export default function LanguageSwitcher({ activeLang, className = '' }: Languag
         <Link
           key={lang}
           href={`/${lang}`}
-          className={`border-b pb-1 uppercase transition-colors ${
+          className={`inline-flex min-h-11 min-w-11 items-center justify-center border-b uppercase transition-colors ${
             activeLang === lang
               ? 'border-[var(--color-text-primary)] text-[var(--color-text-primary)]'
               : 'border-transparent text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'

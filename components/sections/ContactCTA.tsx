@@ -43,7 +43,7 @@ export default function ContactCTA({ dict, lang }: SectionProps) {
         </h2>
         <p className="mx-auto mt-4 max-w-[440px] font-[var(--font-body)] [font-size:var(--text-body)] leading-[1.65] text-[var(--color-text-secondary)]">{dict.contact.subheadline}</p>
 
-        <div className="mt-12 border border-[var(--color-border)] bg-[var(--color-surface-raised)] p-6 text-left shadow-[0_32px_120px_rgba(0,0,0,0.42)] md:p-8">
+        <div className="form-card mt-12 p-6 text-left md:p-8">
           {status === 'success' ? (
             <div className="fade-in py-6">
               <p className="font-[var(--font-mono)] [font-size:var(--text-xs)] font-medium uppercase tracking-[var(--tracking-caps)] text-[var(--color-gold)]">✓ {dict.contact.successLabel}</p>

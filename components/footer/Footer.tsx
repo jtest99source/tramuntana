@@ -9,7 +9,7 @@ const metaClass = 'font-[var(--font-mono)] [font-size:var(--text-xs)] text-[var(
 export default function Footer({ dict, lang }: SectionProps) {
   return (
     <footer className="relative overflow-hidden border-t border-[var(--color-border)] bg-[var(--color-bg)] pb-10 pt-[var(--space-lg)]">
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-4">
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-3">
         <div>
           <h2 className="label">{dict.footer.navigation}</h2>
           <ul className="mt-5 space-y-3">
@@ -19,13 +19,6 @@ export default function Footer({ dict, lang }: SectionProps) {
             <li><a href="#contact" className={linkClass}>{dict.footer.links[3]}</a></li>
           </ul>
           <LanguageSwitcher activeLang={lang} className="mt-8 sm:hidden" />
-        </div>
-        <div>
-          <h2 className="label">{dict.footer.social}</h2>
-          <ul className="mt-5 space-y-3">
-            <li><a href="https://www.linkedin.com" target="_blank" rel="noreferrer" className={linkClass}>LinkedIn</a></li>
-            <li><a href="https://www.instagram.com" target="_blank" rel="noreferrer" className={linkClass}>Instagram</a></li>
-          </ul>
         </div>
         <div>
           <h2 className="label">{dict.footer.contact}</h2>

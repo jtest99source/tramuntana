@@ -13,11 +13,18 @@ const descriptorFallback: Record<string, Record<string, string>> = {
 
 const backLabel: Record<string, string> = { en: '← Back', es: '← Volver', de: '← Zurück' }
 
+const shortWebsitePlaceholder: Record<string, string> = {
+  en: 'yourwebsite.com',
+  es: 'tuweb.com',
+  de: 'ihrewebsite.com',
+}
+
 export default function Calculator({ dict, lang }: SectionProps) {
   const [loading, setLoading] = useState(false)
   const [messageIndex, setMessageIndex] = useState(0)
   const [result, setResult] = useState<VisibilityResult | null>(null)
   const [error, setError] = useState('')
+  const [showFullPlaceholder, setShowFullPlaceholder] = useState(false)
 
   useEffect(() => {
     if (!loading) return
@@ -26,6 +33,14 @@ export default function Calculator({ dict, lang }: SectionProps) {
     }, 1100)
     return () => window.clearInterval(timer)
   }, [dict.calculator.loading.length, loading])
+
+  useEffect(() => {
+    const query = window.matchMedia('(min-width: 768px)')
+    const updatePlaceholder = () => setShowFullPlaceholder(query.matches)
+    updatePlaceholder()
+    query.addEventListener('change', updatePlaceholder)
+    return () => query.removeEventListener('change', updatePlaceholder)
+  }, [])
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -74,7 +89,7 @@ export default function Calculator({ dict, lang }: SectionProps) {
   const showResult = !!result || !!error
 
   return (
-    <AnimatedSection id="calculator" className="border-y border-[var(--color-border-accent)] bg-[var(--color-gold-bg)] py-[var(--space-xl)]">
+    <AnimatedSection id="calculator" className="bg-[var(--color-bg)] py-[var(--space-xl)]">
       <div className="mx-auto grid max-w-6xl gap-16 px-6 lg:grid-cols-[0.85fr_1fr] lg:items-center">
         <div>
           <span className="eyebrow">{dict.calculator.eyebrow}</span>
@@ -84,7 +99,7 @@ export default function Calculator({ dict, lang }: SectionProps) {
           <p className="mt-3 max-w-[380px] font-[var(--font-body)] [font-size:var(--text-sm)] leading-[1.65] text-[var(--color-text-secondary)]">{dict.calculator.subheadline}</p>
         </div>
 
-        <div className="border border-[var(--color-border)] bg-[var(--color-surface-raised)] p-6 shadow-[0_32px_120px_rgba(0,0,0,0.42)] md:p-8">
+        <div className="form-card p-6 md:p-8">
           {showResult ? (
             <div className="fade-in">
               <button
@@ -147,7 +162,7 @@ export default function Calculator({ dict, lang }: SectionProps) {
                   id="websiteUrl"
                   name="websiteUrl"
                   className="input-field"
-                  placeholder={dict.calculator.fields.websitePlaceholder}
+                  placeholder={showFullPlaceholder ? dict.calculator.fields.websitePlaceholder : shortWebsitePlaceholder[lang]}
                 />
               </div>
               <div>
@@ -166,7 +181,7 @@ export default function Calculator({ dict, lang }: SectionProps) {
                   }}
                 >
                   {dict.calculator.sectors.map((sector) => (
-                    <option key={sector} style={{ background: 'var(--color-surface-raised)', color: 'var(--color-text-primary)' }}>{sector}</option>
+                    <option key={sector} style={{ background: 'var(--ink)', color: 'var(--color-text-primary)' }}>{sector}</option>
                   ))}
                 </select>
               </div>
