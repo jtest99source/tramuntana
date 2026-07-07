@@ -4,11 +4,11 @@ import Footer from '@/components/footer/Footer'
 import Navbar from '@/components/nav/Navbar'
 import Calculator from '@/components/sections/Calculator'
 import ContactCTA from '@/components/sections/ContactCTA'
+import DataProof from '@/components/sections/DataProof'
 import Hero from '@/components/sections/Hero'
 import MallorcaVerified from '@/components/sections/MallorcaVerified'
 import Problem from '@/components/sections/Problem'
 import Services from '@/components/sections/Services'
-import Testimonials from '@/components/sections/Testimonials'
 import WhyTramuntana from '@/components/sections/WhyTramuntana'
 import { getDictionary } from '@/lib/i18n/dictionaries'
 import { isLang } from '@/lib/utils'
@@ -50,7 +50,7 @@ export default async function LandingPage({ params }: PageProps) {
         <Services dict={dict} lang={rawLang} />
         <Calculator dict={dict} lang={rawLang} />
         <WhyTramuntana dict={dict} lang={rawLang} />
-        <Testimonials dict={dict} lang={rawLang} />
+        <DataProof dict={dict} lang={rawLang} />
         <MallorcaVerified dict={dict} lang={rawLang} />
         <ContactCTA dict={dict} lang={rawLang} />
       </main>

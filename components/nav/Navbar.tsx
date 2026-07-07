@@ -5,18 +5,17 @@ import { useEffect, useRef, useState } from 'react'
 import { useReducedMotion } from 'framer-motion'
 import type { SectionProps } from '@/types'
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
+import Logo from '@/components/ui/Logo'
 
 const navLinks = [
   ['#home', 0],
   ['#calculator', 1],
-  ['#mallorca-verified', 2],
-  ['#contact', 3],
+  ['https://mallorcaverified.com', 2],
 ] as const
 
 export default function Navbar({ dict, lang }: SectionProps) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const closeButtonRef = useRef<HTMLButtonElement>(null)
   const previouslyFocusedRef = useRef<HTMLElement | null>(null)
   const reduceMotion = useReducedMotion()
 
@@ -33,7 +32,6 @@ export default function Navbar({ dict, lang }: SectionProps) {
     previouslyFocusedRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
-    closeButtonRef.current?.focus()
 
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
@@ -80,15 +78,11 @@ export default function Navbar({ dict, lang }: SectionProps) {
       }`}
     >
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
-        <Link href={`/${lang}`} className="flex items-baseline gap-3" onClick={closeMenu}>
-          <span className="flex flex-col leading-none">
-            <span className="font-[var(--font-display)] text-xl font-bold tracking-[var(--tracking-tight)] text-[var(--color-text-primary)]">Tramuntana</span>
-            <span className="mt-0.5 font-[var(--font-mono)] [font-size:var(--text-xs)] uppercase tracking-[var(--tracking-caps)] text-[var(--color-gold)]">Digital</span>
-          </span>
+        <Link href={`/${lang}`} className="inline-flex items-center" onClick={closeMenu}>
+          <Logo />
         </Link>
 
-        <div className="flex items-center gap-2 md:hidden">
-          <LanguageSwitcher activeLang={lang} className="gap-0" />
+        <div className="md:hidden">
           <button
             type="button"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -122,19 +116,6 @@ export default function Navbar({ dict, lang }: SectionProps) {
           } md:hidden`}
         >
           <div className="mx-auto flex h-full max-w-sm flex-col">
-            <div className="flex items-center justify-between">
-              <LanguageSwitcher activeLang={lang} className="gap-1" />
-              <button
-                ref={closeButtonRef}
-                type="button"
-                onClick={closeMenu}
-                aria-label="Close menu"
-                className="inline-flex h-11 w-11 items-center justify-center font-[var(--font-mono)] text-2xl text-[var(--color-text-primary)] transition-colors hover:text-[var(--color-gold)]"
-              >
-                ×
-              </button>
-            </div>
-
             <nav className="mt-16" aria-label="Mobile navigation">
               <ul className="space-y-8">
                 {navLinks.map(([href, index]) => (
@@ -142,14 +123,31 @@ export default function Navbar({ dict, lang }: SectionProps) {
                     <a
                       href={href}
                       onClick={closeMenu}
+                      target={href.startsWith('https://') ? '_blank' : undefined}
+                      rel={href.startsWith('https://') ? 'noreferrer' : undefined}
                       className="block font-[var(--font-display)] text-[clamp(34px,10vw,52px)] font-semibold leading-none text-[var(--color-text-primary)] transition-colors hover:text-[var(--color-gold)]"
                     >
                       {dict.footer.links[index]}
+                      {href.startsWith('https://') ? ' ->' : null}
                     </a>
                   </li>
                 ))}
               </ul>
             </nav>
+
+            <div className="mt-12 space-y-8 border-t border-[var(--color-border)] pt-8">
+              <a
+                href="#contact"
+                onClick={closeMenu}
+                className="btn btn-primary inline-flex w-full"
+              >
+                {dict.nav.freeAudit}
+              </a>
+              <div>
+                <p className="label mb-3">{dict.nav.language}</p>
+                <LanguageSwitcher activeLang={lang} className="gap-1" />
+              </div>
+            </div>
           </div>
         </div>
       ) : null}

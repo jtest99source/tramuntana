@@ -1,4 +1,5 @@
 import { DM_Mono, DM_Sans, Fraunces } from 'next/font/google'
+import type { Metadata } from 'next'
 import './globals.css'
 
 const fraunces = Fraunces({
@@ -26,6 +27,16 @@ const dmMono = DM_Mono({
 
 type RootLayoutProps = {
   children: React.ReactNode
+}
+
+export const metadata: Metadata = {
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="Tramuntana Digital">
+  <rect x="0" y="0" width="180" height="180" fill="#0C0C0C"/>
+  <text
+    x="72"
+    y="119"
+    text-anchor="middle"
+    font-family="Fraunces, Georgia, serif"
+    font-size="112"
+    font-weight="700"
+    fill="#F5F1E8"
+  >T</text>
+  <text
+    x="126"
+    y="119"
+    text-anchor="middle"
+    font-family="Fraunces, Georgia, serif"
+    font-size="28"
+    font-weight="700"
+    fill="#E3B341"
+  >.</text>
+</svg>

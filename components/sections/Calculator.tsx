@@ -2,21 +2,19 @@
 
 import { useEffect, useState } from 'react'
 import AnimatedSection from '@/components/ui/AnimatedSection'
-import ScoreDisplay from '@/components/ui/ScoreDisplay'
+import CountUpScore from '@/components/ui/CountUpScore'
+import Reveal from '@/components/ui/Reveal'
 import type { SectionProps, VisibilityResult } from '@/types'
-
-const descriptorFallback: Record<string, Record<string, string>> = {
-  en: { Critical: 'Critical', Low: 'Low visibility', Moderate: 'Moderate visibility', Good: 'Good visibility', Strong: 'Strong visibility' },
-  es: { Critical: 'Crítica', Low: 'Visibilidad baja', Moderate: 'Visibilidad moderada', Good: 'Buena visibilidad', Strong: 'Visibilidad fuerte' },
-  de: { Critical: 'Kritisch', Low: 'Geringe Sichtbarkeit', Moderate: 'Moderate Sichtbarkeit', Good: 'Gute Sichtbarkeit', Strong: 'Starke Sichtbarkeit' },
-}
-
-const backLabel: Record<string, string> = { en: '← Back', es: '← Volver', de: '← Zurück' }
 
 const shortWebsitePlaceholder: Record<string, string> = {
   en: 'yourwebsite.com',
   es: 'tuweb.com',
   de: 'ihrewebsite.com',
+}
+
+type SubmittedBusiness = {
+  businessName: string
+  websiteUrl: string
 }
 
 export default function Calculator({ dict, lang }: SectionProps) {
@@ -25,6 +23,7 @@ export default function Calculator({ dict, lang }: SectionProps) {
   const [result, setResult] = useState<VisibilityResult | null>(null)
   const [error, setError] = useState('')
   const [showFullPlaceholder, setShowFullPlaceholder] = useState(false)
+  const [submittedBusiness, setSubmittedBusiness] = useState<SubmittedBusiness>({ businessName: '', websiteUrl: '' })
 
   useEffect(() => {
     if (!loading) return
@@ -57,6 +56,8 @@ export default function Calculator({ dict, lang }: SectionProps) {
       lang,
     }
 
+    setSubmittedBusiness({ businessName: payload.businessName, websiteUrl: payload.websiteUrl })
+
     try {
       const response = await fetch('/api/visibility', {
         method: 'POST',
@@ -78,6 +79,22 @@ export default function Calculator({ dict, lang }: SectionProps) {
     setError('')
   }
 
+  function getVerdict(score: number) {
+    if (score <= 40) return dict.calculator.result.verdict.low
+    if (score <= 70) return dict.calculator.result.verdict.mid
+    return dict.calculator.result.verdict.high
+  }
+
+  function handleAuditClick() {
+    const detail = {
+      businessName: submittedBusiness.businessName,
+      website: submittedBusiness.websiteUrl,
+    }
+
+    window.sessionStorage.setItem('tramuntana:audit-prefill', JSON.stringify(detail))
+    window.dispatchEvent(new CustomEvent('tramuntana:audit-prefill', { detail }))
+  }
+
   const metrics = result
     ? [
         ['googlePresence', dict.calculator.metrics.googlePresence, result.metrics.googlePresence],
@@ -91,24 +108,17 @@ export default function Calculator({ dict, lang }: SectionProps) {
   return (
     <AnimatedSection id="calculator" className="bg-[var(--color-bg)] py-[var(--space-xl)]">
       <div className="mx-auto grid max-w-6xl gap-16 px-6 lg:grid-cols-[0.85fr_1fr] lg:items-center">
-        <div>
+        <Reveal>
           <span className="eyebrow">{dict.calculator.eyebrow}</span>
           <h2 className="max-w-[420px] font-[var(--font-display)] [font-size:var(--text-h2)] font-semibold leading-[1.15] text-[var(--color-text-primary)]">
             {dict.calculator.headline}
           </h2>
           <p className="mt-3 max-w-[380px] font-[var(--font-body)] [font-size:var(--text-sm)] leading-[1.65] text-[var(--color-text-secondary)]">{dict.calculator.subheadline}</p>
-        </div>
+        </Reveal>
 
         <div className="form-card p-6 md:p-8">
           {showResult ? (
-            <div className="fade-in">
-              <button
-                onClick={handleBack}
-                className="mb-6 font-[var(--font-mono)] [font-size:var(--text-xs)] uppercase tracking-[var(--tracking-caps)] text-[var(--color-text-tertiary)] transition-colors hover:text-[var(--color-text-secondary)]"
-              >
-                {backLabel[lang] ?? '← Back'}
-              </button>
-
+            <div className="fade-in [animation-duration:300ms]">
               {error ? (
                 <div>
                   <p className="font-[var(--font-body)] [font-size:var(--text-body)] leading-[1.65] text-[var(--color-text-secondary)]">{error}</p>
@@ -118,31 +128,36 @@ export default function Calculator({ dict, lang }: SectionProps) {
                 </div>
               ) : result ? (
                 <div>
-                  <ScoreDisplay
+                  <CountUpScore
                     score={result.overallScore}
-                    descriptor={descriptorFallback[lang][result.descriptor] || result.descriptor}
+                    scoreClassName="font-[var(--font-mono)] text-[64px] font-medium leading-none text-[var(--color-gold)]"
+                    suffixClassName="pb-2 font-[var(--font-mono)] [font-size:var(--text-sm)] text-[var(--color-text-tertiary)]"
+                    progressClassName="mt-5 h-1.5 overflow-hidden rounded-full bg-[var(--color-border)]"
                   />
-                  <div className="mt-8 space-y-5">
-                    {metrics.map(([key, label, score], index) => (
-                      <div key={key}>
-                        <div className="mb-2 flex items-center justify-between gap-4 text-sm">
-                          <span className="text-[var(--color-text-primary)]">{label}</span>
-                          <span className="font-[var(--font-mono)] text-[var(--color-text-secondary)]">{score}/10</span>
-                        </div>
-                        <div className="h-[3px] bg-[var(--color-border)]">
-                          <div
-                            className="h-[3px] bg-[var(--color-gold)] transition-all duration-700 ease-out"
-                            style={{ width: `${score * 10}%`, transitionDelay: `${index * 120}ms` }}
-                          />
-                        </div>
-                      </div>
+                  <p className="mt-6 font-[var(--font-display)] [font-size:var(--text-h3)] font-semibold leading-[1.18] text-[var(--color-text-primary)]">
+                    {getVerdict(result.overallScore)}
+                  </p>
+                  <ul className="mt-8 space-y-4">
+                    {metrics.map(([key, label, score]) => (
+                      <li key={key} className="flex gap-3 font-[var(--font-body)] [font-size:var(--text-body)] leading-[1.55] text-[var(--color-text-secondary)]">
+                        <span className="mt-0.5 shrink-0 font-[var(--font-mono)] text-[var(--color-gold)]" aria-hidden="true">-&gt;</span>
+                        <span>
+                          {label}: <span className="text-[var(--color-text-primary)]">{score}/10</span>
+                        </span>
+                      </li>
                     ))}
-                  </div>
-                  <p className="mt-8 font-[var(--font-body)] [font-size:var(--text-body)] leading-[1.65] text-[var(--color-text-secondary)]">{result.narrative}</p>
-                  <a href="#contact" className="btn btn-primary mt-8 inline-flex w-full">
-                    {dict.calculator.cta}
+                  </ul>
+                  <p className="mt-7 font-[var(--font-body)] [font-size:var(--text-sm)] leading-[1.65] text-[var(--color-text-tertiary)]">{result.narrative}</p>
+                  <a href="#contact" onClick={handleAuditClick} className="btn btn-primary mt-8 inline-flex w-full">
+                    {dict.calculator.result.auditCta}
                   </a>
-                  <p className="mt-5 [font-size:var(--text-sm)] leading-6 text-[var(--color-text-tertiary)]">{dict.calculator.disclaimer}</p>
+                  <button
+                    type="button"
+                    onClick={handleBack}
+                    className="mx-auto mt-5 block font-[var(--font-body)] [font-size:var(--text-sm)] text-[var(--color-text-tertiary)] transition-colors hover:text-[var(--color-text-secondary)]"
+                  >
+                    {dict.calculator.result.reset}
+                  </button>
                 </div>
               ) : null}
             </div>

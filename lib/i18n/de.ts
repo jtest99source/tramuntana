@@ -8,6 +8,7 @@ const de: EnDictionary = {
   },
   nav: {
     freeAudit: 'Kostenlose Prüfung',
+    language: 'Sprache',
   },
   hero: {
     eyebrow: 'Digitales Marketing · Mallorca',
@@ -59,13 +60,11 @@ const de: EnDictionary = {
       'Boutique-Hotel',
       'Bootscharter',
       'Luxusimmobilien',
-      'Restaurant',
       'Beach Club',
       'Spa & Wellness',
-      'Fitness & Gym',
-      'Autohaus',
-      'Retail & Boutique',
-      'Aktivitäten & Touren',
+      'Ästhetikklinik',
+      'Zahnarztpraxis',
+      'Anwaltskanzlei',
       'Sonstiges',
     ],
     submit: 'Jetzt analysieren',
@@ -76,6 +75,15 @@ const de: EnDictionary = {
       onlineReputation: 'Online-Reputation',
     },
     cta: 'Kostenlose Prüfung anfordern',
+    result: {
+      verdict: {
+        low: 'Ihr Unternehmen ist online fast unsichtbar.',
+        mid: 'Sie werden gefunden - aber Ihre Mitbewerber sind leichter zu finden.',
+        high: 'Starke Basis. Die verbleibenden Luecken sind die teuren.',
+      },
+      auditCta: 'VOLLSTAENDIGES AUDIT ERHALTEN - KOSTENLOS',
+      reset: 'Anderes Unternehmen pruefen',
+    },
     disclaimer:
       'Dies ist ein geschätzter Score basierend auf Ihrer Branche und digitalem Fußabdruck. Ein vollständiges Audit liefert präzise, umsetzbare Daten.',
     error:
@@ -96,26 +104,18 @@ const de: EnDictionary = {
       'Partnernetzwerk: Mallorca Verified',
     ],
   },
-  testimonials: [
-    {
-      quote:
-        'We had a fully booked summer season before Tramuntana, but we were losing winter enquiries to competitors we knew were worse than us. Within three months, that changed completely.',
-      name: 'James R.',
-      role: 'Owner, Boutique Hotel, Northwest Mallorca',
-    },
-    {
-      quote:
-        'I had no idea ChatGPT and Google were sending clients to our competitors when they searched for charter in the bay. Getting that fixed was the best decision I made this year.',
-      name: 'Henrik S.',
-      role: 'Director, Yacht Charter Company, Palma',
-    },
-    {
-      quote:
-        'Our listings were sitting there doing nothing. Now we get qualified buyer enquiries from people who found us through search - not through a referral network we had to maintain.',
-      name: 'Claire M.',
-      role: 'Partner, Luxury Real Estate, Mallorca',
-    },
-  ],
+  dataProof: {
+    eyebrow: 'Proprietaere Daten',
+    headline: 'Wir raten nicht, was auf Mallorca funktioniert. Wir messen es.',
+    body:
+      'Ueber Mallorca Verified analysieren wir Unternehmen auf der Insel mit echten Google-Bewertungsdaten. Das bedeutet: Jede Strategie beginnt mit dem, was in Ihrer Branche tatsaechlich gewinnt.',
+    stats: [
+      { value: '6.000+', target: 6000, decimals: 0, suffix: '+', label: 'Verifizierte Unternehmen' },
+      { value: '3,8M+', target: 3.8, decimals: 1, suffix: 'M+', label: 'Verifizierte Bewertungen' },
+      { value: '3', target: 3, decimals: 0, suffix: '', label: 'Sprachen: ES / EN / DE' },
+    ],
+    cta: 'Rankings selbst ansehen ->',
+  },
   mallorcaVerified: {
     eyebrow: 'Partner-Ökosystem',
     headline: 'Ihr Unternehmen, verstärkt durch Mallorca Verified.',

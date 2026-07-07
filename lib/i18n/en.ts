@@ -6,6 +6,7 @@ const en = {
   },
   nav: {
     freeAudit: 'Free audit',
+    language: 'Language',
   },
   hero: {
     eyebrow: 'Digital marketing · Mallorca',
@@ -57,13 +58,11 @@ const en = {
       'Boutique hotel',
       'Boat charter',
       'Luxury real estate',
-      'Restaurant',
       'Beach club',
       'Spa & wellness',
-      'Fitness & gym',
-      'Car dealership',
-      'Retail & boutique',
-      'Activities & tours',
+      'Aesthetic clinic',
+      'Dental clinic',
+      'Law firm',
       'Other',
     ],
     submit: 'Analyse now',
@@ -74,6 +73,15 @@ const en = {
       onlineReputation: 'Online reputation',
     },
     cta: 'Request your free audit',
+    result: {
+      verdict: {
+        low: 'Your business is nearly invisible online.',
+        mid: "You're being found - but your competitors are easier to find.",
+        high: 'Strong base. The gaps left are the expensive ones.',
+      },
+      auditCta: 'GET THE FULL AUDIT - FREE',
+      reset: 'Check another business',
+    },
     disclaimer:
       'This is an estimated score based on your sector and digital footprint. A full audit provides precise, actionable data.',
     error:
@@ -94,26 +102,18 @@ const en = {
       'Partner network: Mallorca Verified',
     ],
   },
-  testimonials: [
-    {
-      quote:
-        'We had a fully booked summer season before Tramuntana, but we were losing winter enquiries to competitors we knew were worse than us. Within three months, that changed completely.',
-      name: 'James R.',
-      role: 'Owner, Boutique Hotel, Northwest Mallorca',
-    },
-    {
-      quote:
-        'I had no idea ChatGPT and Google were sending clients to our competitors when they searched for charter in the bay. Getting that fixed was the best decision I made this year.',
-      name: 'Henrik S.',
-      role: 'Director, Yacht Charter Company, Palma',
-    },
-    {
-      quote:
-        'Our listings were sitting there doing nothing. Now we get qualified buyer enquiries from people who found us through search - not through a referral network we had to maintain.',
-      name: 'Claire M.',
-      role: 'Partner, Luxury Real Estate, Mallorca',
-    },
-  ],
+  dataProof: {
+    eyebrow: 'Proprietary data',
+    headline: "We don't guess what works in Mallorca. We measure it.",
+    body:
+      "Through Mallorca Verified, we analyze the island's businesses using real Google review data - which means every strategy we build starts from what's actually winning in your sector.",
+    stats: [
+      { value: '6,000+', target: 6000, decimals: 0, suffix: '+', label: 'Businesses analyzed' },
+      { value: '3.8M+', target: 3.8, decimals: 1, suffix: 'M+', label: 'Google reviews processed' },
+      { value: '3', target: 3, decimals: 0, suffix: '', label: 'Languages: ES / EN / DE' },
+    ],
+    cta: 'See the rankings yourself ->',
+  },
   mallorcaVerified: {
     eyebrow: 'Partner ecosystem',
     headline: 'Your business, amplified by Mallorca Verified.',
