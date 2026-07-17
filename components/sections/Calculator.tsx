@@ -116,9 +116,9 @@ export default function Calculator({ dict, lang }: SectionProps) {
           <p className="mt-3 max-w-[380px] font-[var(--font-body)] [font-size:var(--text-sm)] leading-[1.65] text-[var(--color-text-secondary)]">{dict.calculator.subheadline}</p>
         </Reveal>
 
-        <div className="form-card p-6 md:p-8">
+        <div className="form-card p-6 md:p-8" aria-live="polite">
           {showResult ? (
-            <div className="fade-in [animation-duration:300ms]">
+            <div className="fade-in [animation-duration:300ms]" role={error ? 'alert' : 'status'}>
               {error ? (
                 <div>
                   <p className="font-[var(--font-body)] [font-size:var(--text-body)] leading-[1.65] text-[var(--color-text-secondary)]">{error}</p>
@@ -140,7 +140,9 @@ export default function Calculator({ dict, lang }: SectionProps) {
                   <ul className="mt-8 space-y-4">
                     {metrics.map(([key, label, score]) => (
                       <li key={key} className="flex gap-3 font-[var(--font-body)] [font-size:var(--text-body)] leading-[1.55] text-[var(--color-text-secondary)]">
-                        <span className="mt-0.5 shrink-0 font-[var(--font-mono)] text-[var(--color-gold)]" aria-hidden="true">-&gt;</span>
+                        <svg className="mt-1 h-4 w-4 shrink-0 text-[var(--color-gold)]" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                          <path d="M3 8h9M9 5l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
                         <span>
                           {label}: <span className="text-[var(--color-text-primary)]">{score}/10</span>
                         </span>
@@ -154,7 +156,7 @@ export default function Calculator({ dict, lang }: SectionProps) {
                   <button
                     type="button"
                     onClick={handleBack}
-                    className="mx-auto mt-5 block font-[var(--font-body)] [font-size:var(--text-sm)] text-[var(--color-text-tertiary)] transition-colors hover:text-[var(--color-text-secondary)]"
+                    className="mx-auto mt-3 flex min-h-[44px] items-center justify-center px-4 font-[var(--font-body)] [font-size:var(--text-sm)] text-[var(--color-text-tertiary)] transition-colors hover:text-[var(--color-text-secondary)]"
                   >
                     {dict.calculator.result.reset}
                   </button>

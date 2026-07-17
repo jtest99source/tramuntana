@@ -22,7 +22,7 @@ function renderServiceName(name: string) {
 
 export default function Services({ dict }: SectionProps) {
   return (
-    <AnimatedSection id="services" className="-mt-1 rounded-t-[40px] bg-[var(--cream)] py-24 text-[var(--navy)] md:rounded-t-[60px] md:py-40">
+    <AnimatedSection id="services" className="section-light -mt-1 rounded-t-[40px] bg-[var(--cream)] py-24 text-[var(--navy)] md:rounded-t-[60px] md:py-40">
       <div className="mx-auto max-w-6xl px-6">
         <Reveal>
           <span className="eyebrow text-[var(--gold)]">{dict.services.eyebrow}</span>

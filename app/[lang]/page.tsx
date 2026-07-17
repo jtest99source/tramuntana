@@ -41,10 +41,15 @@ export default async function LandingPage({ params }: PageProps) {
 
   const dict = await getDictionary(rawLang)
 
+  const skipLabel = rawLang === 'es' ? 'Saltar al contenido' : rawLang === 'de' ? 'Zum Inhalt springen' : 'Skip to content'
+
   return (
     <>
+      <a href="#main" className="skip-link">
+        {skipLabel}
+      </a>
       <Navbar dict={dict} lang={rawLang} />
-      <main>
+      <main id="main">
         <Hero dict={dict} lang={rawLang} />
         <Problem dict={dict} lang={rawLang} />
         <Services dict={dict} lang={rawLang} />

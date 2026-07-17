@@ -125,10 +125,14 @@ export default function Navbar({ dict, lang }: SectionProps) {
                       onClick={closeMenu}
                       target={href.startsWith('https://') ? '_blank' : undefined}
                       rel={href.startsWith('https://') ? 'noreferrer' : undefined}
-                      className="block font-[var(--font-display)] text-[clamp(34px,10vw,52px)] font-semibold leading-none text-[var(--color-text-primary)] transition-colors hover:text-[var(--color-gold)]"
+                      className="flex items-center gap-3 font-[var(--font-display)] text-[clamp(34px,10vw,52px)] font-semibold leading-none text-[var(--color-text-primary)] transition-colors hover:text-[var(--color-gold)]"
                     >
                       {dict.footer.links[index]}
-                      {href.startsWith('https://') ? ' ->' : null}
+                      {href.startsWith('https://') ? (
+                        <svg className="h-[0.55em] w-[0.55em] shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                          <path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      ) : null}
                     </a>
                   </li>
                 ))}

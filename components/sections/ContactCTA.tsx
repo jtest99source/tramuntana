@@ -79,9 +79,9 @@ export default function ContactCTA({ dict, lang }: SectionProps) {
           <p className="mx-auto mt-4 max-w-[440px] font-[var(--font-body)] [font-size:var(--text-body)] leading-[1.65] text-[var(--color-text-secondary)]">{dict.contact.subheadline}</p>
         </Reveal>
 
-        <div className="form-card mt-12 p-6 text-left md:p-8">
+        <div className="form-card mt-12 p-6 text-left md:p-8" aria-live="polite">
           {status === 'success' ? (
-            <div className="fade-in py-6">
+            <div className="fade-in py-6" role="status">
               <p className="font-[var(--font-mono)] [font-size:var(--text-xs)] font-medium uppercase tracking-[var(--tracking-caps)] text-[var(--color-gold)]">✓ {dict.contact.successLabel}</p>
               <p className="mt-6 font-[var(--font-display)] [font-size:var(--text-h3)] leading-[1.25] text-[var(--color-text-primary)]">{dict.contact.success}</p>
             </div>
@@ -143,7 +143,7 @@ export default function ContactCTA({ dict, lang }: SectionProps) {
               <button type="submit" className="btn btn-primary w-full" disabled={status === 'loading'}>
                 {dict.contact.submit}
               </button>
-              {status === 'error' ? <p className="[font-size:var(--text-sm)] text-[var(--color-gold)]">{dict.contact.error}</p> : null}
+              {status === 'error' ? <p role="alert" className="[font-size:var(--text-sm)] text-[var(--color-danger)]">{dict.contact.error}</p> : null}
             </form>
           )}
         </div>
