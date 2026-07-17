@@ -16,7 +16,14 @@ export default function Footer({ dict, lang }: SectionProps) {
           <ul className="mt-5 space-y-3">
             <li><a href="#home" className={linkClass}>{dict.footer.links[0]}</a></li>
             <li><a href="#calculator" className={linkClass}>{dict.footer.links[1]}</a></li>
-            <li><a href="#mallorca-verified" className={linkClass}>{dict.footer.links[2]} -&gt;</a></li>
+            <li>
+              <a href="https://mallorcaverified.com" target="_blank" rel="noreferrer" className={`${linkClass} inline-flex items-center gap-1.5`}>
+                {dict.footer.links[2]}
+                <svg className="h-3 w-3 shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            </li>
             <li><a href="#contact" className={linkClass}>{dict.footer.links[3]}</a></li>
           </ul>
           <LanguageSwitcher activeLang={lang} className="mt-8 sm:hidden" />

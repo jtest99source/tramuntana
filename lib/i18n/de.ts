@@ -114,7 +114,7 @@ const de: EnDictionary = {
       { value: '3,8M+', target: 3.8, decimals: 1, suffix: 'M+', label: 'Verifizierte Bewertungen' },
       { value: '3', target: 3, decimals: 0, suffix: '', label: 'Sprachen: ES / EN / DE' },
     ],
-    cta: 'Rankings selbst ansehen ->',
+    cta: 'Rankings selbst ansehen',
   },
   mallorcaVerified: {
     eyebrow: 'Partner-Ökosystem',
@@ -124,7 +124,7 @@ const de: EnDictionary = {
       'Jedes Unternehmen, mit dem wir zusammenarbeiten, erhält einen angereicherten, verifizierten Eintrag auf Mallorca Verified. Das bedeutet eine zusätzliche Online-Präsenz, Backlink-Autorität und Sichtbarkeit auf einer Plattform, die speziell dafür entwickelt wurde, von KI-Suchmaschinen wie ChatGPT und Perplexity zitiert zu werden, wenn Reisende und Zuzügler nach Mallorca fragen.',
       'Keine andere Agentur auf der Insel kann das bieten.',
     ],
-    cta: 'mallorcaverified.com besuchen →',
+    cta: 'mallorcaverified.com besuchen',
     card: {
       badge: 'Verifizierter Eintrag',
       name: 'Balm Restaurant',

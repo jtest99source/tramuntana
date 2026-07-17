@@ -97,9 +97,12 @@ export default function DataProof({ dict, lang }: SectionProps) {
             href="https://mallorcaverified.com"
             target="_blank"
             rel="noreferrer"
-            className="mt-14 inline-flex font-[var(--font-body)] font-medium text-[var(--color-gold)] transition-colors duration-150 hover:text-[var(--color-gold-light)]"
+            className="mt-14 inline-flex items-center gap-2 font-[var(--font-body)] font-medium text-[var(--color-gold)] transition-colors duration-150 hover:text-[var(--color-gold-light)]"
           >
             {dict.dataProof.cta}
+            <svg className="h-3.5 w-3.5 shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </a>
         </Reveal>
       </div>

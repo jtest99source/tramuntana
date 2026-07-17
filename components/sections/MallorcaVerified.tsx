@@ -5,10 +5,6 @@ import CountUpScore from '@/components/ui/CountUpScore'
 import Reveal from '@/components/ui/Reveal'
 import type { SectionProps } from '@/types'
 
-function ctaWithoutArrow(label: string) {
-  return label.replace(/\s*(?:â†’|Ã¢â€ â€™)\s*$/, '')
-}
-
 export default function MallorcaVerified({ dict }: SectionProps) {
   return (
     <AnimatedSection id="mallorca-verified" className="overflow-hidden border-t border-[rgba(227,179,65,0.28)] bg-[var(--color-bg)] py-24 md:py-32">
@@ -31,10 +27,12 @@ export default function MallorcaVerified({ dict }: SectionProps) {
               href="https://mallorcaverified.com"
               target="_blank"
               rel="noreferrer"
-              className="mt-10 inline-flex font-[var(--font-body)] font-medium text-[var(--color-gold)] transition-colors duration-150 hover:text-[var(--color-gold-light)]"
+              className="mt-10 inline-flex items-center gap-2 font-[var(--font-body)] font-medium text-[var(--color-gold)] transition-colors duration-150 hover:text-[var(--color-gold-light)]"
             >
-              {ctaWithoutArrow(dict.mallorcaVerified.cta)}
-              <span aria-hidden="true">&nbsp;→</span>
+              {dict.mallorcaVerified.cta}
+              <svg className="h-3.5 w-3.5 shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </a>
           </Reveal>
 
@@ -49,7 +47,7 @@ export default function MallorcaVerified({ dict }: SectionProps) {
             />
             <Reveal delay={200} className="w-full rounded-2xl border border-[rgba(227,179,65,0.28)] bg-[#141414] p-6 text-[var(--color-text-primary)] shadow-[0_24px_50px_rgba(0,0,0,0.6)] backdrop-blur md:absolute md:right-0 md:top-0 md:w-[66%] md:p-7">
               <p className="font-[var(--font-mono)] [font-size:var(--text-xs)] font-medium uppercase tracking-[var(--tracking-caps)] text-[var(--gold)]">{dict.mallorcaVerified.card.badge}</p>
-              <h3 className="mt-5 whitespace-nowrap font-[var(--font-display)] text-[clamp(24px,2vw,30px)] font-semibold leading-tight text-[var(--color-text-primary)]">
+              <h3 className="mt-5 font-[var(--font-display)] text-[clamp(24px,2vw,30px)] font-semibold leading-tight text-[var(--color-text-primary)]">
                 {dict.mallorcaVerified.card.name}
               </h3>
               <p className="mt-2 font-[var(--font-mono)] [font-size:var(--text-xs)] uppercase tracking-[var(--tracking-caps)] text-[rgba(215,226,234,0.62)]">{dict.mallorcaVerified.card.location}</p>

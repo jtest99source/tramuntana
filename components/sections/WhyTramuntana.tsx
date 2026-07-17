@@ -21,7 +21,11 @@ export default function WhyTramuntana({ dict }: SectionProps) {
         <ul className="space-y-6">
           {dict.why.differentiators.map((item, index) => (
             <Reveal key={item} as="li" delay={index * 100} className="flex items-start gap-4">
-              <span className="mt-0.5 w-8 shrink-0 text-right font-[var(--font-mono)] text-[var(--color-gold)]" aria-hidden="true">-&gt;</span>
+              <span className="flex w-8 shrink-0 justify-end" aria-hidden="true">
+                <svg className="mt-1 h-4 w-4 text-[var(--color-gold)]" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h9M9 5l3 3-3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
               <span className="font-[var(--font-body)] [font-size:var(--text-body)] leading-[1.65] text-[var(--color-text-secondary)]">
                 {item}
               </span>

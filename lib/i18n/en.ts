@@ -112,7 +112,7 @@ const en = {
       { value: '3.8M+', target: 3.8, decimals: 1, suffix: 'M+', label: 'Google reviews processed' },
       { value: '3', target: 3, decimals: 0, suffix: '', label: 'Languages: ES / EN / DE' },
     ],
-    cta: 'See the rankings yourself ->',
+    cta: 'See the rankings yourself',
   },
   mallorcaVerified: {
     eyebrow: 'Partner ecosystem',
@@ -122,7 +122,7 @@ const en = {
       'Every business we work with gets an enriched, verified listing on Mallorca Verified. That means an additional online presence, backlink authority, and visibility in a platform specifically designed to be cited by AI search engines like ChatGPT and Perplexity when travellers and relocators ask about Mallorca.',
       'No other agency on the island can offer this.',
     ],
-    cta: 'Visit mallorcaverified.com →',
+    cta: 'Visit mallorcaverified.com',
     card: {
       badge: 'Verified listing',
       name: 'Balm Restaurant',
